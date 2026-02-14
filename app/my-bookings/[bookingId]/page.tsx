@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import ProtectedPage from "@/components/ProtectedPage";
 import { useAuth } from "@/components/AuthContext";
 import { apiGet } from "@/lib/api";
@@ -91,15 +92,15 @@ function BookingDetails({ bookingId }: { bookingId: string }) {
         {/* Status Banner */}
         <div className={`
           p-6 rounded-t-3xl border-b border-gray-100 flex items-center justify-between
-          ${booking.status === 'Confirmed' ? 'bg-green-50 text-green-800' : 
-            booking.status === 'Pending' ? 'bg-yellow-50 text-yellow-800' :
-            booking.status === 'Cancelled' ? 'bg-red-50 text-red-800' : 
+          ${booking.status === 'confirmed' ? 'bg-green-50 text-green-800' : 
+            booking.status === 'pending' ? 'bg-yellow-50 text-yellow-800' :
+            booking.status === 'cancelled' ? 'bg-red-50 text-red-800' : 
             'bg-gray-50 text-gray-800'}
         `}>
           <div className="flex items-center space-x-3">
-            {booking.status === 'Confirmed' ? <CheckCircleIcon className="w-6 h-6" /> :
-             booking.status === 'Pending' ? <ClockIcon className="w-6 h-6" /> :
-             booking.status === 'Cancelled' ? <ExclamationCircleIcon className="w-6 h-6" /> : null}
+            {booking.status === 'confirmed' ? <CheckCircleIcon className="w-6 h-6" /> :
+             booking.status === 'pending' ? <ClockIcon className="w-6 h-6" /> :
+             booking.status === 'cancelled' ? <ExclamationCircleIcon className="w-6 h-6" /> : null}
             <span className="font-bold text-lg uppercase tracking-wider">{booking.status}</span>
           </div>
           <span className="text-sm font-medium opacity-75">Booking ID: {booking._id.slice(-6)}</span>

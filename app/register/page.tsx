@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { apiPost } from "@/lib/api";
@@ -8,7 +8,7 @@ import { useAuth } from "@/components/AuthContext";
 import { AuthResponse } from "@/types";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
-export default function RegisterPage() {
+function RegisterContent() {
   const [form, setForm] = useState({
     nidNo: "",
     name: "",
@@ -146,5 +146,13 @@ export default function RegisterPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen py-20 flex justify-center items-center"><div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" /></div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }

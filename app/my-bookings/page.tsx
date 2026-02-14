@@ -140,7 +140,7 @@ function BookingsContent() {
                       Details
                     </Link>
                     
-                    {booking.status !== "Cancelled" && booking.status !== "Completed" && (
+                    {booking.status !== "cancelled" && booking.status !== "completed" && (
                       <button
                         type="button"
                         className="flex-1 md:flex-none py-2 px-4 rounded-full border border-red-200 text-red-600 hover:bg-red-50 text-sm font-semibold transition-colors flex items-center justify-center"

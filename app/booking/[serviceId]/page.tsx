@@ -14,7 +14,8 @@ import {
   CurrencyDollarIcon,
   CalendarDaysIcon,
   ArrowRightIcon,
-  ExclamationCircleIcon
+  ExclamationCircleIcon,
+  ClockIcon
 } from "@heroicons/react/24/outline";
 
 export default function BookingPage({ params }: { params: { serviceId: string } }) {
