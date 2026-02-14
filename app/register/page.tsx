@@ -138,7 +138,10 @@ function RegisterContent() {
           <div className="mt-8 text-center pt-8 border-t border-gray-100">
             <p className="text-sm text-gray-500">
               Already have an account?{" "}
-              <Link href="/login" className="font-semibold text-primary-600 hover:text-primary-700">
+              <Link 
+                href={`/login${redirect !== "/" ? `?redirect=${encodeURIComponent(redirect)}` : ""}`}
+                className="font-semibold text-primary-600 hover:text-primary-700"
+              >
                 Log In
               </Link>
             </p>

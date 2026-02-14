@@ -118,7 +118,10 @@ function LoginContent() {
 
           <p className="text-center text-sm text-gray-500">
             Don't have an account?{" "}
-            <Link href="/register" className="font-semibold text-primary-600 hover:text-primary-700">
+            <Link 
+              href={`/register${redirect !== "/" ? `?redirect=${encodeURIComponent(redirect)}` : ""}`}
+              className="font-semibold text-primary-600 hover:text-primary-700"
+            >
               Create Account
             </Link>
           </p>
