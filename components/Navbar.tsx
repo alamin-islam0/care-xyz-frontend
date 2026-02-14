@@ -15,6 +15,10 @@ export default function Navbar() {
     { href: "/my-bookings", label: "My Bookings" },
   ];
 
+  if (user?.role === "admin") {
+    navLinks.push({ href: "/admin", label: "Admin" });
+  }
+
   return (
     <header className="sticky top-0 z-50 glass border-b border-gray-200/50 animate-slide-down">
       <nav className="container-custom">
