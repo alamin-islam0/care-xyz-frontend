@@ -22,8 +22,9 @@ async function getService(serviceId: string): Promise<Service | null> {
   }
 }
 
-export async function generateMetadata({ params }: { params: { serviceId: string } }) {
-  const service = await getService(params.serviceId);
+export async function generateMetadata({ params }: { params: Promise<{ serviceId: string }> }) {
+  const { serviceId } = await params;
+  const service = await getService(serviceId);
 
   if (!service) {
     return {
@@ -38,8 +39,9 @@ export async function generateMetadata({ params }: { params: { serviceId: string
   };
 }
 
-export default async function ServiceDetailPage({ params }: { params: { serviceId: string } }) {
-  const service = await getService(params.serviceId);
+export default async function ServiceDetailPage({ params }: { params: Promise<{ serviceId: string }> }) {
+  const { serviceId } = await params;
+  const service = await getService(serviceId);
 
   if (!service) notFound();
 
