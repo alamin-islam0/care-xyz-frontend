@@ -16,6 +16,7 @@ import {
   XCircleIcon,
   CheckCircleIcon
 } from "@heroicons/react/24/outline";
+import Swal from "sweetalert2";
 
 export default function MyBookingsPage() {
   return (
@@ -50,13 +51,32 @@ function BookingsContent() {
   }, []);
 
   async function cancelBooking(id: string) {
-    if (!confirm("Are you sure you want to cancel this booking?")) return;
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#EF4444",
+      cancelButtonColor: "#3B82F6",
+      confirmButtonText: "Yes, cancel it!"
+    });
+
+    if (!result.isConfirmed) return;
     
     try {
       await apiPatch(`/bookings/${id}/cancel`, {}, token);
       await loadBookings();
+      Swal.fire(
+        "Cancelled!",
+        "Your booking has been cancelled.",
+        "success"
+      );
     } catch (err: any) {
-      alert(err.message || "Failed to cancel booking");
+      Swal.fire(
+        "Error!",
+        err.message || "Failed to cancel booking",
+        "error"
+      );
     }
   }
 
