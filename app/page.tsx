@@ -7,7 +7,11 @@ import {
   UserGroupIcon, 
   ClockIcon,
   ArrowRightIcon,
-  StarIcon
+  StarIcon,
+  CheckCircleIcon,
+  QuestionMarkCircleIcon,
+  DevicePhoneMobileIcon,
+  HeartIcon
 } from "@heroicons/react/24/outline";
 
 export const metadata = {
@@ -53,34 +57,34 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-10 pb-20 lg:pt-20 lg:pb-28">
         <div className="absolute top-0 right-0 -z-10 opacity-30 transform translate-x-1/3 -translate-y-1/4">
-           <div className="w-[800px] h-[800px] bg-gradient-to-br from-primary-200 to-accent-200 rounded-full blur-3xl filter" />
+           <div className="w-[300px] h-[300px] lg:w-[800px] lg:h-[800px] bg-gradient-to-br from-primary-200 to-accent-200 rounded-full blur-3xl filter" />
         </div>
         
         <div className="container-custom grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-slide-up">
-            <div className="inline-flex items-center space-x-2 bg-primary-50 px-4 py-2 rounded-full border border-primary-100">
+            <div className="inline-flex items-center space-x-2 bg-primary-50 px-4 py-2 rounded-full border border-primary-100 shadow-sm">
               <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse" />
-              <span className="text-primary-700 font-medium text-sm tracking-wide uppercase">
+              <span className="text-primary-700 font-medium text-xs md:text-sm tracking-wide uppercase">
                 Reliable Family Support
               </span>
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-display font-extrabold leading-tight">
+            <h1 className="text-4xl lg:text-7xl font-display font-extrabold leading-tight">
               Trusted Care, <br />
               <span className="gradient-text">Right at Home</span>
             </h1>
             
-            <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
               Care.xyz makes caregiving secure, fast, and accessible for every family. 
               Book certified caretakers by duration and location in minutes.
             </p>
             
-            <div className="flex flex-wrap gap-4">
-              <Link href="#services" className="btn-primary group">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="#services" className="px-8 py-4 bg-primary-600 text-white rounded-full font-bold shadow-lg shadow-primary-200 hover:bg-primary-700 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group">
                 Explore Services
                 <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link href="/register" className="btn-outline">
+              <Link href="/register" className="px-8 py-4 bg-white text-gray-700 border-2 border-gray-100 rounded-full font-bold hover:border-primary-600 hover:text-primary-600 hover:shadow-lg transition-all duration-300 flex items-center justify-center">
                 Get Started
               </Link>
             </div>
@@ -111,8 +115,19 @@ export default async function HomePage() {
               <div className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="flex -space-x-2">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
+                    {[
+                      "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&auto=format&fit=crop&q=60",
+                      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=60",
+                      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=60"
+                    ].map((src, i) => (
+                      <div key={i} className="relative w-8 h-8 rounded-full border-2 border-white overflow-hidden">
+                        <Image
+                          src={src}
+                          alt="Carer"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     ))}
                   </div>
                   <div className="text-sm font-bold text-gray-700">
@@ -136,6 +151,49 @@ export default async function HomePage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary-600 font-semibold tracking-wide uppercase text-sm">Simple Process</span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">How It Works</h2>
+            <p className="text-gray-600">
+              Getting the care you need is simple, secure, and fast.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gray-200 -z-10" />
+            
+            {[
+              { 
+                step: "01", 
+                title: "Search Care", 
+                desc: "Browse through our list of verified caregivers based on your needs." 
+              },
+              { 
+                step: "02", 
+                title: "Book & Pay", 
+                desc: "Select your preferred time and pay securely through our platform." 
+              },
+              { 
+                step: "03", 
+                title: "Get Care", 
+                desc: "The caregiver arrives at your doorstep to provide excellent service." 
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-6 text-center relative">
+                <div className="w-16 h-16 bg-primary-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-6 shadow-lg shadow-primary-200">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <p className="text-gray-500">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -232,6 +290,65 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Safety & Trust Section */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="absolute -left-20 -top-20 w-72 h-72 bg-accent-100 rounded-full blur-3xl opacity-50" />
+              <div className="relative bg-gray-50 rounded-[2.5rem] p-8 md:p-12 border border-gray-100">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <ShieldCheckIcon className="w-8 h-8 text-primary-600 mb-3" />
+                    <div className="font-bold text-gray-900">100% Verified</div>
+                    <div className="text-xs text-gray-500">Every ID Checked</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm mt-8">
+                    <HeartIcon className="w-8 h-8 text-red-500 mb-3" />
+                    <div className="font-bold text-gray-900">Zero Tolerance</div>
+                    <div className="text-xs text-gray-500">For Unsafe Care</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                     <ClockIcon className="w-8 h-8 text-accent-500 mb-3" />
+                     <div className="font-bold text-gray-900">Real-time</div>
+                     <div className="text-xs text-gray-500">Monitoring</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm mt-8">
+                     <UserGroupIcon className="w-8 h-8 text-blue-500 mb-3" />
+                     <div className="font-bold text-gray-900">Expert Team</div>
+                     <div className="text-xs text-gray-500">Always Here</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:pl-8">
+              <span className="text-primary-600 font-semibold tracking-wide uppercase text-sm">Safety First</span>
+              <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6">
+                Your Safety is Our <br/> <span className="gradient-text">Top Priority</span>
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                We take safety seriously. Our rigorous vetting process ensures that only the most trustworthy and capable individuals join our network.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  "Comprehensive Background Checks",
+                  "In-person Interviews & Skill Tests",
+                  "Ongoing Performance Monitoring",
+                  "Secure Payment Protection"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center space-x-3">
+                    <CheckCircleIcon className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <span className="text-gray-700 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
@@ -272,6 +389,65 @@ export default async function HomePage() {
               </blockquote>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-600">Got questions? We've got answers.</p>
+          </div>
+
+          <div className="space-y-6">
+            {[
+              { q: "How do I book a caregiver?", a: "Simply browse our services, choose a caregiver that fits your needs, and click 'Book Now'. You can pay securely online." },
+              { q: "Are the caregivers verified?", a: "Yes, every single caregiver undergoes a strict background check, identity verification, and interview process." },
+              { q: "Can I cancel a booking?", a: "Yes, you can cancel up to 24 hours before the scheduled time for a full refund. Check our policy for more details." },
+              { q: "Is there customer support?", a: "Absolutely! Our support team is available 24/7 to assist you with any issues or queries." }
+            ].map((faq, idx) => (
+              <div key={idx} className="border border-gray-200 rounded-2xl p-6 hover:border-primary-200 transition-colors">
+                 <h3 className="flex items-start font-bold text-gray-900 text-lg">
+                   <QuestionMarkCircleIcon className="w-6 h-6 text-primary-500 mr-3 flex-shrink-0" />
+                   {faq.q}
+                 </h3>
+                 <p className="mt-3 text-gray-600 ml-9 leading-relaxed">
+                   {faq.a}
+                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA / App Download Section */}
+      <section className="py-20">
+        <div className="container-custom">
+           <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-8 md:p-16 text-center overflow-hidden relative">
+             <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500 rounded-full blur-[120px] opacity-20 transform translate-x-1/2 -translate-y-1/2" />
+             <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-500 rounded-full blur-[120px] opacity-20 transform -translate-x-1/2 translate-y-1/2" />
+             
+             <div className="relative z-10 max-w-3xl mx-auto">
+               <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
+                 Ready to Simplify Your Care?
+               </h2>
+               <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+                 Join thousands of families who trust Care.xyz for their loved ones. 
+                 Sign up today and find the perfect caregiver in minutes.
+               </p>
+               
+               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                 <Link href="/register" className="btn-primary w-full sm:w-auto px-8 py-4 text-lg">
+                   Get Started Now
+                 </Link>
+                 <button className="btn-outline border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-800 w-full sm:w-auto px-8 py-4 flex items-center justify-center">
+                   <DevicePhoneMobileIcon className="w-5 h-5 mr-2" />
+                   Download App
+                 </button>
+               </div>
+             </div>
+           </div>
         </div>
       </section>
     </>

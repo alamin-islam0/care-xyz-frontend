@@ -4,7 +4,9 @@ export interface User {
   name: string;
   email: string;
   phone?: string;
+  contact?: string; // Some parts use contact, some use phone. 
   address?: string;
+  nidNo?: string;
   role?: 'user' | 'admin';
 }
 

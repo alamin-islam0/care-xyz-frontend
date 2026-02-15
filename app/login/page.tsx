@@ -7,11 +7,12 @@ import { apiPost } from "@/lib/api";
 import { useAuth } from "@/components/AuthContext";
 import GoogleLoginButton from "@/components/GoogleLoginButton";
 import { AuthResponse } from "@/types";
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 function LoginContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -58,6 +59,29 @@ function LoginContent() {
             <p className="text-gray-500 mt-2">Login to manage your care services</p>
           </div>
           
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail("demoadmin@gmail.com");
+                setPassword("Admin@2000");
+              }}
+              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-xl text-sm font-medium hover:bg-primary-100 transition-colors"
+            >
+              Demo Admin
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail("demouser@gmail.com");
+                setPassword("User@2000");
+              }}
+              className="px-4 py-2 bg-accent-50 text-accent-700 rounded-xl text-sm font-medium hover:bg-accent-100 transition-colors"
+            >
+              Demo User
+            </button>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -77,14 +101,27 @@ function LoginContent() {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Password
               </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="input"
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="input pr-10"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="w-5 h-5" />
+                  ) : (
+                    <EyeIcon className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {error && (
